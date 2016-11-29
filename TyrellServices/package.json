@@ -1,7 +1,7 @@
 {
-  "name": "tyrelleservices",
+  "name": "tyrellservices",
   "version": "1.1.1",
-  "description": "TyrelleServices: An Ionic project",
+  "description": "TyrellServices: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
@@ -19,8 +19,8 @@
     "cordova-plugin-console",
     "cordova-plugin-statusbar",
     "cordova-plugin-device",
-    "ionic-plugin-keyboard",
-    "cordova-plugin-splashscreen"
+    "cordova-plugin-splashscreen",
+    "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": []
 }
