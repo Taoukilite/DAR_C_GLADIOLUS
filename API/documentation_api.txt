@@ -1,0 +1,70 @@
+le serveur est accessible à cette adresse : tyrell.tk ou 178.62.205.219
+
+api à l'url : http://178.62.205.219 ou http://tyrell.tk
+accès phpmyadmin : http://178.62.205.219/phpmyadmin ou http://tyrell.tk/phpmyadmin
+	login : tyrell mdp : tyrell
+
+dans toutes les requêtes il y a une case code 
+si reponse['code'] = 403 alors les paramètres sont invalides
+	dans ce cas, message erreur dans case msg
+si reponse['code'] = 200 alors requête OK
+toutes les requêtes se font en GET
+
+### Vérifier couple mail + mdp client
+/check_credentials
+params :
+	mail : email du client
+	mdp : mot de passe passé en sha1
+réponse :
+	result : nombre de lignes qui correspondent
+
+### Rechercher services dont le nom contient un texte
+/search_service
+	nomService : texte que doit contenir le num du service
+réponse :
+	count : nombre de lignes qui correspondent
+	service : tableau qui contient chaque service correspondant
+
+### Rechercher les services d'une profession
+/services_profession
+	idProfession : id de profession
+réponse :
+	count : nombre de lignes qui correspondent
+	services : tableau qui contient chaque service correspondant
+
+### Rechercher les sous services d'un service
+/sub_service
+	idService : id du service parent
+réponse :
+	count : nombre de lignes qui correspondent
+	services : tableau qui contient chaque service fils
+
+### Rechercher professions dont le nom contient un texte
+/search_profession
+	nomprofession : texte que doit contenir le nom de la profession
+réponse :
+	count : nombre de lignes qui correspondent
+	professions : tableau qui contient chaque profession correspondante
+
+### Rechercher les professionnels qui proposent un service autour d'une localisation
+/professionnels_service
+	idService : id du service
+	latitude : latitude sous forme de nombre à virgule ex : 4.0333
+	longitude : longitude
+	distanceMax : distance max en mètres
+réponse :
+	count : nombre de lignes qui correspondent
+	professionnels : tableau qui contient chaque pro correspondant
+
+
+### Rechercher les professionnels qui exercent une profession autour d'une localisation
+/professions_professionnel
+	idProfession : id de profession
+	latitude : latitude sous forme de nombre à virgule ex : 4.0333
+	longitude : longitude
+	distanceMax : distance max en mètres
+réponse :
+	count : nombre de lignes qui correspondent
+	professionnels : tableau qui contient chaque pro correspondant
+
+
