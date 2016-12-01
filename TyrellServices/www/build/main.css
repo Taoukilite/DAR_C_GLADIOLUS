@@ -6141,6 +6141,13 @@ button[disabled],
   padding-left: .4em;
 }
 
+[icon-bottom] ion-icon {
+  font-size: 1.4em;
+  line-height: .67;
+  pointer-events: none;
+  padding-left: .4em;
+}
+
 .button[icon-only] {
   padding: 0;
   min-width: .9em;

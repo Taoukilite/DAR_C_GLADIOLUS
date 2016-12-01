@@ -13,11 +13,11 @@
   </ion-navbar>
 </ion-header>
 
-
-<ion-content padding>
+<ion-content padding image-menu>
 	<h3>Que recherchez-vous ?</h3>
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-  <ion-list>
+  <ion-searchbar (ionInput)="getItems($event)" (ionCancel)="onCancel($event)" [showCancelButton]="true">
+  </ion-searchbar>
+  <ion-list *ngIf="showList">
     <ion-item *ngFor="let item of items">
       {{ item }}
     </ion-item>

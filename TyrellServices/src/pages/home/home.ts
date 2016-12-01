@@ -13,11 +13,13 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
- searchQuery: string = '';
+  private showList: boolean;
+  searchQuery: string = '';
   items: string[];
 
   constructor() {
     this.initializeItems();
+    this.showList = false;
   }
 
   initializeItems() {
@@ -62,7 +64,10 @@ export class HomePage {
 ];
   }
 
-  getItems(ev: any) {
+  getItems(ev) {
+    // Show the results
+    this.showList = true;
+    
     // Reset items back to all of the items
     this.initializeItems();
 
@@ -75,5 +80,13 @@ export class HomePage {
         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
+  }
+
+  onCancel(ev) { 
+    // Show the results
+    this.showList = false;
+    
+    // Reset the field
+    ev.target.value = '';
   }
 }
