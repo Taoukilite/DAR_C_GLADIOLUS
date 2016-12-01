@@ -18,5 +18,7 @@ export class ProPage {
   ionViewDidLoad() {
     console.log('Hello ProPage Page');
   }
-
+  goToOtherPage(){
+  	this.navCtrl.push("register.html");
+  }
 }
