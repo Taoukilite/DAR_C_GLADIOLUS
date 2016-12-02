@@ -17,7 +17,7 @@ export class HomePage {
   searchQuery: string = '';
   items: string[];
 
-  constructor() {
+  constructor(public navCtrl: NavController) {
     this.initializeItems();
     this.showList = false;
   }

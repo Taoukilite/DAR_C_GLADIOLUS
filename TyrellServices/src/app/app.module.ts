@@ -5,13 +5,17 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ServicesPage } from '../pages/services/services';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+import { ProPage } from '../pages/pro/pro';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ServicesPage,
-    LoginPage
+    LoginPage,
+    RegisterPage,
+    ProPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -21,7 +25,9 @@ import { LoginPage } from '../pages/login/login';
     MyApp,
     HomePage,
     ServicesPage,
-    LoginPage
+    LoginPage,
+    RegisterPage,
+    ProPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
