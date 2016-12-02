@@ -66,8 +66,8 @@ export class HomePage {
 
   getItems(ev) {
     // Show the results
-    this.showList = true;
-    
+    this.showList = false;
+
     // Reset items back to all of the items
     this.initializeItems();
 
@@ -76,16 +76,17 @@ export class HomePage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
+	  this.showList = true;
       this.items = this.items.filter((item) => {
         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
 
-  onCancel(ev) { 
+  onCancel(ev) {
     // Show the results
     this.showList = false;
-    
+
     // Reset the field
     ev.target.value = '';
   }
