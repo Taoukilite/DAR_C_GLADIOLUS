@@ -4,14 +4,14 @@ import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
 import { ServicesPage } from '../pages/services/services';
-import { ProPage} from '../pages/pro/pro';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ServicesPage,
-    ProPage
+    LoginPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -21,7 +21,7 @@ import { ProPage} from '../pages/pro/pro';
     MyApp,
     HomePage,
     ServicesPage,
-    ProPage
+    LoginPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
