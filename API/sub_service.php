@@ -34,4 +34,3 @@ SQL
 	$rep['msg'] = "parametre invalide : id service manquant";
 	echo json_encode($rep);
 }
-
