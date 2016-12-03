@@ -1,0 +1,54 @@
+<!--
+  Generated template for the Profile page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profil</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-list radio-group>
+		<ion-item>
+			<ion-label item-left>Nom</ion-label>
+			<ion-label name="nom" item-right>Snow</ion-label>
+		</ion-item>
+
+		<ion-item>
+			<ion-label item-left>Prenom</ion-label>
+			<ion-label name="prenom" item-right>John</ion-label>
+		</ion-item>
+
+		<ion-item>
+			<ion-label item-left>Adresse</ion-label>
+			<ion-label name="adresse" item-right>Le Mur</ion-label>
+		</ion-item>
+
+		<ion-item>
+			<ion-label item-left>Email</ion-label>
+			<ion-label name="amail" item-right>john.snow@targaryen.com</ion-label>
+		</ion-item>
+
+
+
+		<ion-item>
+		<ion-label>Ajuster Perimetre d'action</ion-label>
+		<ion-range min="-100" step="10" snaps="true" [(ngModel)]="text">
+		<ion-label range-left class="small-text">5km</ion-label>
+		<ion-label range-right>50km</ion-label>
+		</ion-range>
+		</ion-item>
+   
+      
+	</ion-list>
+<button ion-button color="danger"  onclick="document.location.href='http://www.google.fr'" full>Deconnexion</button>
+</ion-content>

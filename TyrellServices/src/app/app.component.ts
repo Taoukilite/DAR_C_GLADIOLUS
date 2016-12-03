@@ -1,10 +1,12 @@
 import { Component, ViewChild} from '@angular/core';
 import { Nav, Platform, Menu } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
+import { SQLite } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
 import { ServicesPage } from '../pages/services/services';
 import { LoginPage } from '../pages/login/login';
+import { ProfilePage } from '../pages/profile/profile';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,6 +26,7 @@ export class MyApp {
       { title: 'Accueil', component: HomePage },
       { title: 'Services', component: ServicesPage },
       { title: 'Login', component: LoginPage},
+      { title: 'Profil', component: ProfilePage },
     ];
   }
 
