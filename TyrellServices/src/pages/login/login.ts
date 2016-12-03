@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { NavController} from 'ionic-angular';
+import { SQLite } from 'ionic-native';
 
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
-
+import { SQLite } from 'ionic-native';
 @Component({
   selector: 'page-page2',
   templateUrl: 'page2.html'
