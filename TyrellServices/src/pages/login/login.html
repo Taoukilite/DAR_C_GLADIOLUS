@@ -27,11 +27,14 @@ Ionic pages and navigation.
 	</ion-list>
 
 	<div padding>
-		<button  ion-button color="primary" block>Se connecter</button>
+		<button  ion-button color="primary" block (click)="submit()">Se connecter</button>
 		<button  ion-button color="primary" block (click)="register()">S'enregistrer</button>
 		<p></p>
 		<button  ion-button color="primary" block (click)="pro()">Accès Pro</button>
 		<button  id="bottom" ion-button color="primary" block (click)="home()">Passer cette étape</button>
+	</div>
+	<div>
+
 	</div>
 		<!--form [ngFormModel]="loginForm" (submit)="login($event,username,password,rememberMe)" style="padding-top: 50px">
 	        <ion-list no-lines>
