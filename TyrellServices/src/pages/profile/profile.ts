@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { ChangeprofilePage } from '../changeprofile/changeprofile';
 
 /*
   Generated class for the Profile page.
@@ -7,10 +8,12 @@ import { NavController } from 'ionic-angular';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
 })
+
 export class ProfilePage {
 	text: number = 0;
   constructor(public navCtrl: NavController) {}
@@ -18,8 +21,9 @@ export class ProfilePage {
   ionViewDidLoad() {
     console.log('Hello ProfilePage Page');
   }
-  disconnect(){
 
+  change(){
+    this.navCtrl.push(ChangeprofilePage);
   }
 
 }

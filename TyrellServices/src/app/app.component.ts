@@ -22,12 +22,24 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Accueil', component: HomePage },
-      { title: 'Services', component: ServicesPage },
-      { title: 'Login', component: LoginPage},
-      { title: 'Profil', component: ProfilePage },
-    ];
+    if(localStorage['logged'] == 1)
+    {
+      console.log("logger")
+      this.pages = [
+        { title: 'Accueil', component: HomePage },
+        { title: 'Services', component: ServicesPage },
+        { title: 'Profil', component: ProfilePage },
+      ];
+    }
+    else{
+      console.log("Pas logger")
+      this.pages = [
+        { title: 'Accueil', component: HomePage },
+        { title: 'Services', component: ServicesPage },
+        { title: 'Login', component: LoginPage },
+        
+      ];
+    }  
   }
 
   initializeApp() {
@@ -36,6 +48,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
+      localStorage['logged']= 0
     });
   }
 

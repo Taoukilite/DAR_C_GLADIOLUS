@@ -12,6 +12,7 @@ import { ProPage } from '../pro/pro';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
