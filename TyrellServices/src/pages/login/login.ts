@@ -27,7 +27,6 @@ export class LoginPage {
                 public alertCtrl: AlertController, public events: Events){
   		this.navCtrl = navCtrl;
       this.http = http;
-
   	}
 
   	home(){
