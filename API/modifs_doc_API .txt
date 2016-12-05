@@ -1,0 +1,70 @@
+Comme tu l'avais indiqué la réponse contient en plus le code
+
+
+###IMPORTANT (à faire en priorité pour qu'on puisse avancer)
+
+###Envoie la liste des professions à l'application
+/recup_professions
+params : 
+	aucun (sauf s'il t'en faut un)
+reponse :
+	professions : tableau ou peu importe, un type qui puisse contenir la liste des professions (leur nom dans la bdd doit être le nom qu'on affichera dans l'app)
+
+###Meme principe, envoie la liste des services à l'app
+/recup_services
+params :
+	aucun (sauf s'il t'en faut un)
+reponse :
+	services : comme pour les professions, un type qui puisse contenir la liste des services (leur nom et le nom de leur service père s'ils en ont un)
+
+
+### MODIFICATIONS, MOINS IMPORTANT MAIS UTILE QUAND MÊME
+
+### Verifier couple mail + mdp client
+/check_credentials
+params :
+	mail : email du client
+	mdp : mot de passe passe en sha1
+reponse :
+	result : 0 email invalide, 1 tout valide, 2 mdp invalide
+
+### Inscrire un client
+/inscription_client
+	nom : nom du client
+	prenom : prenom du client
+	mail : mail du client
+	mdp : mail du client en sha1
+	adresse : adresse du client
+reponse :
+	result : 0 déjà utilisé, 1 inscription validée
+
+
+### NOUVELLES FONCTIONS, juste la récup des infos clients important
+
+### Vérifier le couple mail/mdp du professionnel
+/check_credentials_pro
+params :
+	mail : email du professionnel
+	mdp : mot de passe passe en sha1
+reponse :
+	result : 0 email invalide, 1 tout valide, 2 mdp invalide
+
+
+### Récupération des infos client
+/recup_infos_client
+	email : email du client
+reponse :
+	nom
+	prenom
+	adresse
+	perimetre : on va stocker ce paramètre dans la bdd pour que l'utilisateur n'ait pas à le remodifier à chaque fois
+
+### Modification de coordonnées (optionnel, si t'as le temps et la motivation, c'est vraiment pas indispensable pour l'instant)
+/modif_nom /modif_prenom /modif_adresse /modif_mdp /modif_mail 
+	email : 
+	nom/prenom/adresse/mdp/new_mail
+reponse :
+	result : 0 changement invalide (email déjà utilisé ou erreur), 1 changement valide et effectué
+
+
+
