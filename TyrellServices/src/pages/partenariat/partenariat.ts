@@ -4,7 +4,7 @@ import { SQLite } from 'ionic-native';
 import { Http } from '@angular/http';
 
 import { HomePage } from '../home/home';
-
+import { LoginPage } from '../login/login'
 /*
   Generated class for the Partenariat page.
 
@@ -35,5 +35,9 @@ export class PartenariatPage {
 
   submit(){
 
+  }
+  back()
+  {
+    this.navCtrl.pop(PartenariatPage);
   }
 }
