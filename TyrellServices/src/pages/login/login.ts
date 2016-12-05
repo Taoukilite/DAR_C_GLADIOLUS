@@ -59,7 +59,6 @@ export class LoginPage {
           result = parseInt(JSON.parse(answer).result);
           console.log(result);
           code = parseInt(JSON.parse(answer).code);
-          console.log(code);
 
           if (result==0){
             let alert = this.alertCtrl.create({
