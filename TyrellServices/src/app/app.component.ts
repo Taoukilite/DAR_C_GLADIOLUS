@@ -1,5 +1,5 @@
 import { Component, ViewChild} from '@angular/core';
-import { Nav, Platform, Menu} from 'ionic-angular';
+import { Nav, Platform, Menu, Events } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { SQLite } from 'ionic-native';
 import { Http } from 'angular2/http';
@@ -19,9 +19,13 @@ export class MyApp {
   rootPage: any = LoginPage;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, public events: Events) {
     this.initializeApp();
     this.logged();
+
+    events.subscribe('logged', () => {
+      this.logged();
+    });
   }
 
   initializeApp() {
@@ -60,5 +64,5 @@ export class MyApp {
     this.menu.enable(true);
     this.nav.setRoot(page.component);
     this.menu.close();
-  }
+  } 
 }

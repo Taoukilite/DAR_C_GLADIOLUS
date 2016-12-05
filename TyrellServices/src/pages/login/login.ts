@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, Events } from 'ionic-angular';
 import { SQLite } from 'ionic-native';
 import { Http } from '@angular/http';
 
@@ -24,9 +24,10 @@ export class LoginPage {
   mdp:string;
 
   	constructor(public navCtrl: NavController, public http: Http, 
-                public alertCtrl: AlertController){
+                public alertCtrl: AlertController, public events: Events){
   		this.navCtrl = navCtrl;
       this.http = http;
+
   	}
 
   	home(){
@@ -71,6 +72,7 @@ export class LoginPage {
           if (result==1){
             this.navCtrl.setRoot(HomePage);
             localStorage['logged'] = 1;
+            this.events.publish('logged');
           }
         }, error=>{
           let alert = this.alertCtrl.create({
