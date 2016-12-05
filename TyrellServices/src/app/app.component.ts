@@ -1,5 +1,5 @@
 import { Component, ViewChild} from '@angular/core';
-import { Nav, Platform, Menu } from 'ionic-angular';
+import { Nav, Platform, Menu} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { SQLite } from 'ionic-native';
 import { Http } from 'angular2/http';
@@ -21,8 +21,20 @@ export class MyApp {
 
   constructor(public platform: Platform) {
     this.initializeApp();
+    this.logged();
+  }
 
-    // used for an example of ngFor and navigation
+  initializeApp() {
+    this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      StatusBar.styleDefault();
+      Splashscreen.hide();
+      localStorage['logged']= 0
+    });
+  }
+
+  logged(){
     if(localStorage['logged'] == 1)
     {
       console.log("logger")
@@ -38,19 +50,8 @@ export class MyApp {
         { title: 'Accueil', component: HomePage },
         { title: 'Services', component: ServicesPage },
         { title: 'Login', component: LoginPage },
-        
       ];
     } 
-  }
-
-  initializeApp() {
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-      Splashscreen.hide();
-      localStorage['logged']= 0
-    });
   }
 
   openPage(page) {
