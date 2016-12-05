@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 
 /*
   Generated class for the Changeprofile page.
@@ -13,7 +13,9 @@ import { NavController } from 'ionic-angular';
 })
 export class ChangeprofilePage {
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController,public params: NavParams){
+
+  }
 
   ionViewDidLoad() {
     console.log('Hello ChangeprofilePage Page');

@@ -9,6 +9,7 @@ import { RegisterPage } from '../pages/register/register';
 import { ProPage } from '../pages/pro/pro';
 import { ProfilePage } from '../pages/profile/profile';
 import { PartenariatPage } from '../pages/partenariat/partenariat';
+import { ChangeprofilePage } from '../pages/changeprofile/changeprofile';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { PartenariatPage } from '../pages/partenariat/partenariat';
     RegisterPage,
     ProPage,
     ProfilePage,
-    PartenariatPage
+    PartenariatPage,
+    ChangeprofilePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -34,7 +36,8 @@ import { PartenariatPage } from '../pages/partenariat/partenariat';
     RegisterPage,
     ProPage,
     ProfilePage,
-    PartenariatPage
+    PartenariatPage,
+    ChangeprofilePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
