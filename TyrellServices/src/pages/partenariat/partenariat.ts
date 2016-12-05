@@ -30,7 +30,7 @@ export class PartenariatPage {
   }
 
   ionViewDidLoad() {
-    console.log('Hello RegisterPage Page');
+    console.log('Hello PartenariatPage Page');
   }
 
   submit(){
