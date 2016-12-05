@@ -16,23 +16,19 @@
 <ion-content padding>
 	<ion-list radio-group>	
 		<ion-item>
-			<ion-label item-left>Nom</ion-label>
-			<ion-label name="nom" item-right>Snow</ion-label>
+			<button ion-button color="light" block (click)="changeName()">Modifier Nom</button>
 		</ion-item>
 
 		<ion-item>
-			<ion-label item-left>Prenom</ion-label>
-			<ion-label name="prenom" item-right>John</ion-label>
+			<button ion-button color="light" block (click)="changePrenom()">Modifier Prenom</button>
 		</ion-item>
 
 		<ion-item>
-			<ion-label item-left>Adresse</ion-label>
-			<ion-label name="adresse" item-right>Le Mur</ion-label>
+			<button ion-button color="light" block (click)="changeMail()">Modifier Mail</button>
 		</ion-item>
 
 		<ion-item>
-			<ion-label item-left>Email</ion-label>
-			<ion-label name="amail" item-right>john.snow@targaryen.com</ion-label>
+			<button ion-button color="light" block (click)="changeAddr()">Modifier Adresse</button>
 		</ion-item>
 	</ion-list>
 </ion-content>

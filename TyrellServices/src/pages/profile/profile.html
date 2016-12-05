@@ -20,29 +20,29 @@
 	<ion-list radio-group>
 		<ion-item>
 			<ion-label item-left>Nom</ion-label>
-			<ion-label name="nom" item-right>Snow</ion-label>
+			<ion-label name="nom"  item-right  >{{nom}}</ion-label>
 		</ion-item>
 
 		<ion-item>
 			<ion-label item-left>Prenom</ion-label>
-			<ion-label name="prenom" item-right>John</ion-label>
+			<ion-label name="prenom" item-right  > {{prenom}} </ion-label>
 		</ion-item>
 
 		<ion-item>
 			<ion-label item-left>Adresse</ion-label>
-			<ion-label name="adresse" item-right>Le Mur</ion-label>
+			<ion-label name="adresse" item-right  > {{adresse}} </ion-label>
 		</ion-item>
 
 		<ion-item>
 			<ion-label item-left>Email</ion-label>
-			<ion-label name="amail" item-right>john.snow@targaryen.com</ion-label>
+			<ion-label name="email"  item-right  > {{e_mail}} </ion-label>
 		</ion-item>
 
 
 
 		<ion-item>
 			<ion-label>Ajuster Perimetre d'action</ion-label>
-			<ion-range min="-100" step="10" snaps="true" [(ngModel)]="text">
+			<ion-range min="-100" step="10" snaps="true" [(ngModel)]="range">
 				<ion-label range-left class="small-text">5km</ion-label>
 				<ion-label range-right>50km</ion-label>
 			</ion-range>
