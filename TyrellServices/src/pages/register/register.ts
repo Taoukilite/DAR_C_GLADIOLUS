@@ -32,7 +32,7 @@ export class RegisterPage {
 
 
   submit(){
-      //Initialisation de notre URL : URL + parametres : mail et mdp
+      //Initialisation de notre URL : URL + parametres : 
       var link = 'http://tyrell.tk/inscription_client.php?nom='+this.nom+'&prenom='+this.prenom+'&mail='+this.mail+'&mdp='+this.mdp+'&adresse='+this.adresse
       //Déclarations des variables
       var answer;

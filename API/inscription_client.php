@@ -1,6 +1,6 @@
 <?php
 require_once 'configbd.php';
-
+header('Access-Control-Allow-Origin: *');
 if(isset($_GET['nom']) && !empty($_GET['nom'])
 	&& isset($_GET['prenom']) && !empty($_GET['prenom'])
 	&& isset($_GET['mail']) && !empty($_GET['mail'])
