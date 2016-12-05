@@ -70,9 +70,9 @@ export class LoginPage {
             alert.present();
           }
           if (result==1){
-            this.navCtrl.setRoot(HomePage);
             localStorage['logged'] = 1;
             this.events.publish('logged');
+            this.navCtrl.setRoot(HomePage);
           }
         }, error=>{
           let alert = this.alertCtrl.create({

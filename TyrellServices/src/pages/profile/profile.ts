@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Events } from 'ionic-angular';
 import { ChangeprofilePage } from '../changeprofile/changeprofile';
+
+import { LoginPage } from '../login/login';
 
 /*
   Generated class for the Profile page.
@@ -18,14 +20,17 @@ export class ProfilePage {
   nav:NavController;
 	text: number = 0;
   
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, public events: Events) {}
 
-  ionViewDidLoad() {
-    console.log('Hello ProfilePage Page');
-  }
 
   change(){
     this.navCtrl.push(ChangeprofilePage);
+  }
+
+  disconnect(){
+    localStorage['logged'] = 0;
+    this.events.publish('logged');
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }
