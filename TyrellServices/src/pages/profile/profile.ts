@@ -25,7 +25,7 @@ export class ProfilePage {
   prenom:string;
   e_mail:string;
   nom:string;
-  constructor(public navCtrl: NavController, public http: Http,public events: Events){
+  constructor(public navCtrl: NavController, public http: Http,public events: Events,public params: NavParams){
 
 
     this.nom="Neige ";
