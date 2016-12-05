@@ -4,6 +4,7 @@ import { SQLite } from 'ionic-native';
 import { Http } from '@angular/http';
 
 import { HomePage } from '../home/home';
+import { LoginPage } from '..//login/login';
 
 /*
   Generated class for the Register page.
@@ -29,16 +30,12 @@ export class RegisterPage {
   	this.navCtrl = navCtrl;
   }
 
-  ionViewDidLoad() {
-    console.log('Hello RegisterPage Page');
-  }
 
   submit(){
-
       //Initialisation de notre URL : URL + parametres : mail et mdp
       var link = 'http://tyrell.tk/inscription_client.php?nom='+this.nom+'&prenom='+this.prenom+'&mail='+this.mail+'&mdp='+this.mdp+'&adresse='+this.adresse
       //Déclarations des variables
-      var answer;''
+      var answer;
       var result;
       var code;
 
@@ -73,5 +70,9 @@ export class RegisterPage {
           alert.present();
           console.log(error);
         });
+    }
+
+    back(){
+      this.navCtrl.pop(LoginPage);
     }
 }

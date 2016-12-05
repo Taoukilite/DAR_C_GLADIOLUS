@@ -39,7 +39,8 @@
 			<ion-label floating>Mot de passe</ion-label>
 			<ion-input type="password" [(ngModel)]="mdp"></ion-input>
 		</ion-item>
-
 	</ion-list>
-	<button ion-button color="danger" (click)="submit()" full>S'enregistrer</button>
+	<button ion-button color="primary" block (click)="submit()">S'enregistrer</button>
+	<p></p>
+	<button ion-button color="danger" block (click)="back()">Retour</button>
 </ion-content>

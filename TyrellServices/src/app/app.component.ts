@@ -2,7 +2,6 @@ import { Component, ViewChild} from '@angular/core';
 import { Nav, Platform, Menu, Events } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { SQLite } from 'ionic-native';
-import { Http } from 'angular2/http';
 
 import { HomePage } from '../pages/home/home';
 import { ServicesPage } from '../pages/services/services';
