@@ -5,6 +5,7 @@ import { Http } from '@angular/http';
 
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login'
+
 import { PartenariatPage } from '../partenariat/partenariat'
 
 
@@ -19,7 +20,7 @@ import { PartenariatPage } from '../partenariat/partenariat'
   templateUrl: 'pro.html'
 })
 export class ProPage {
-  
+
 	nav:NavController;
   mail:string;
   mdp:string;	

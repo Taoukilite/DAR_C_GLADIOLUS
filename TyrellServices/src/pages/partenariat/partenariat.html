@@ -6,7 +6,7 @@
 -->
 <ion-header>
 	<ion-navbar hideBackButton *navBar>
-		<ion-title>S'enregistrer</ion-title>
+		<ion-title>Partenariat</ion-title>
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
@@ -34,8 +34,13 @@
 			<ion-label floating>Email</ion-label>
 			<ion-input type="e-mail" [(ngModel)]="mail"></ion-input>
 		</ion-item>
-
-		
+		<ion-item>
+			<ion-input type="objet" [(ngModel)]="Objet"></ion-input>
+		</ion-item>
+		<ion-item> 
+			<ion-label stacked>Message</ion-label>
+	   		<ion-textarea [(ngModel)]="msg"></ion-textarea>
+		</ion-item>	
 
 	</ion-list>
 	<button ion-button color="danger" (click)="submit()" full>S'enregistrer</button>

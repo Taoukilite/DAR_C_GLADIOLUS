@@ -35,43 +35,5 @@ export class PartenariatPage {
 
   submit(){
 
-      //Initialisation de notre URL : URL + parametres : mail et mdp
-      var link = 'http://tyrell.tk/inscription_client.php?nom='+this.nom+'&prenom='+this.prenom+'&mail='+this.mail+'&mdp='+this.mdp+'&adresse='+this.adresse
-      //Déclarations des variables
-      var answer;''
-      var result;
-      var code;
-
-      //Requete http en get à l'url initialisé
-      this.http.get(link)
-        .subscribe(data=>{ 
-          //On récupère la réponse dans data._body (sous la forme d'un JSON)
-          answer = data["_body"];
-
-          //On transforme le JSON en objet et on récupère les différents paramètres
-          result = parseInt(JSON.parse(answer).result);
-          console.log(result);
-          code = parseInt(JSON.parse(answer).code);
-          console.log(code);
-
-          if (result==0){
-            let alert = this.alertCtrl.create({
-            title: "Email deja prise,Reesayer",
-            buttons: ['OK']
-            });
-            alert.present();
-          }
-          if (result==1){
-            this.navCtrl.setRoot(HomePage);
-            localStorage['logged'] = 1;
-          }
-        }, error=>{
-          let alert = this.alertCtrl.create({
-            title: "Erreur lors de la creation du compte",
-            buttons: ['OK']
-          });
-          alert.present();
-          console.log(error);
-        });
-    }
+  }
 }
