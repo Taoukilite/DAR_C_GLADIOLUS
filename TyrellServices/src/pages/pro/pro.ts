@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SQLite } from 'ionic-native';
+import { Http } from '@angular/http';
+
 import { LoginPage } from '../login/login'
+
 
 /*
   Generated class for the Pro page.
@@ -24,5 +27,11 @@ export class ProPage {
  	{
  		this.navCtrl.pop(LoginPage);
  	}
+  submit_pro(){
+
+  }
+  partenariat(){
+
+  }
 
 }
