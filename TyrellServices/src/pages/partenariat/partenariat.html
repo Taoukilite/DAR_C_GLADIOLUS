@@ -30,11 +30,12 @@
 			<ion-input type="e-mail" [(ngModel)]="mail"></ion-input>
 		</ion-item>
 		<ion-item>
+			<ion-label floating>Objet</ion-label>
 			<ion-input type="objet" [(ngModel)]="Objet"></ion-input>
 		</ion-item>
 		<ion-item> 
 			<ion-label stacked>Message</ion-label>
-	   		<ion-textarea [(ngModel)]="msg"></ion-textarea>
+	   		<ion-textarea [(ngModel)]="msg"rows="6" placeholder="enter long description here..."></ion-textarea>
 		</ion-item>	
 
 	</ion-list>
