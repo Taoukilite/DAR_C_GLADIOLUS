@@ -15,7 +15,9 @@ import { ChangeprofilePage } from '../changeprofile/changeprofile';
 })
 
 export class ProfilePage {
+  nav:NavController;
 	text: number = 0;
+  
   constructor(public navCtrl: NavController) {}
 
   ionViewDidLoad() {
