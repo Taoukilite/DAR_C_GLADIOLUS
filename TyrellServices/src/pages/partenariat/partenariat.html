@@ -1,0 +1,44 @@
+
+<ion-header>
+	<ion-navbar hideBackButton *navBar>
+		<ion-title>Partenariat</ion-title>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-list>
+		<ion-item>
+			<ion-label floating>Nom</ion-label>
+			<ion-input type="Nom" [(ngModel)]="nom" ></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label floating>Prenom</ion-label>
+			<ion-input type="prenom" [(ngModel)]="prenom"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label floating>Adresse</ion-label>
+			<ion-input type="adresse" [(ngModel)]="adresse"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label floating>Email</ion-label>
+			<ion-input type="e-mail" [(ngModel)]="mail"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label floating>Objet</ion-label>
+			<ion-input type="objet" [(ngModel)]="Objet"></ion-input>
+		</ion-item>
+		<ion-item> 
+			<ion-label stacked>Message</ion-label>
+	   		<ion-textarea [(ngModel)]="msg"rows="6" placeholder="enter long description here..."></ion-textarea>
+		</ion-item>	
+
+	</ion-list>
+	<button ion-button color="secondary" (click)="submit()" full>Envoyer</button>
+	<button ion-button color="danger" block (click)="back()">Retour</button>
+</ion-content>

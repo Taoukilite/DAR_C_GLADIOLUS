@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { SQLite } from 'ionic-native';
 
 /*
   Generated class for the Home page.
@@ -17,9 +18,10 @@ export class HomePage {
   searchQuery: string = '';
   items: string[];
 
-  constructor() {
+  constructor(public navCtrl: NavController) {
     this.initializeItems();
     this.showList = false;
+
   }
 
   initializeItems() {

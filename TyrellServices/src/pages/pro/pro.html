@@ -5,31 +5,31 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Accès Pro</ion-title>
-  </ion-navbar>
+	<ion-navbar hideBackButton *navBar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+	</ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
+	<h1 id="titre2">Accès Pro</h1>
+	<ion-list>
+		<ion-item>
+			<ion-label floating>Login</ion-label>
+			<ion-input type="mail"  [(ngModel)]="mail" ></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label floating>Mot de passe</ion-label>
+			<ion-input type="mdp" [(ngModel)]="mdp" ></ion-input>
+		</ion-item>
+	</ion-list>
 
-  <ion-item>
-    <ion-label floating>Login</ion-label>
-    <ion-input type="login"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Mot de passe</ion-label>
-    <ion-input type="mdp"></ion-input>
-  </ion-item>
-
-  </ion-list>
-    <div padding>
-      <button  ion-button color="primary" block>Se connecter</button>
-      <button  ion-button color="primary" (click)="goToOtherPage()" block>S'enregistrer</button>
+	<div padding>
+		<button  ion-button color="primary" block (click)="submit_pro()">Se connecter</button>
+		<button  ion-button color="primary" block (click)="partenariat()">Demande de partenariat</button>
+		<p></p>
+		<button ion-button color="danger" block (click)="back()">Retour</button>
 	</div>
 </ion-content>

@@ -21748,3 +21748,21 @@ sub {
     padding-top: calc(16px + 20px);
   }
 }
+
+#titre {
+  font-size: 34px;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  font-family: 'AlexBrush';
+  font-style: italic;
+}
+
+#bottom {
+  margin-top: 80px;
+}
+
+#titre2 {
+  text-align: center;
+  padding-top: 20px;
+}
