@@ -2,19 +2,19 @@
 require_once 'configbd.php';
 header('Access-Control-Allow-Origin: *');
 
-if(isset($_GET['mail']) && !empty($_GET['mail']) && 
+if(isset($_GET['login']) && !empty($_GET['login']) && 
 	isset($_GET['mdp']) && !empty($_GET['mdp'])){
-	$mail = $_GET['mail'];
+	$login = $_GET['login'];
 	$mdp = $_GET['mdp'];
 	
 	$pdo = myPDO::getInstance();
 $stmt = $pdo->prepare(<<<SQL
-select count(idClient) "nb"
-from client
-where mail=:mail
+select count(idProfessionnel) "nb"
+from professionnel
+where login=:login
 SQL
 	);
-	$stmt->bindValue(":mail", $mail);
+	$stmt->bindValue(":login", $login);
 	$stmt->execute();
 	
 	$rep = Array();
@@ -26,18 +26,18 @@ SQL
 	
 		$pdo = myPDO::getInstance();
 		$stmt2 = $pdo->prepare(<<<SQL
-select count(idClient) "nb"
-from client
-where mail=:mail
+select count(idProfessionnel) "nb"
+from professionnel
+where login=:login
 and mdp=:mdp
 SQL
 		);
-		$stmt2->bindValue(":mail", $mail);
+		$stmt2->bindValue(":login", $login);
 		$stmt2->bindValue(":mdp", $mdp);
 		$stmt2->execute();
 		if(($ligne2 = $stmt2->fetch()) !== false && $ligne2['nb'] == 1){
 			$rep['result'] = 1;
-		}		
+		}
 	}
 	echo json_encode($rep);
 		
@@ -45,7 +45,7 @@ SQL
 	http_response_code(403);
 	$rep = Array();
 	$rep['code'] = 403;
-	$rep['msg'] = "parametres invalides : mail et sha1(mdp) requis";
+	$rep['msg'] = "parametres invalides : login et sha1(mdp) requis";
 	echo json_encode($rep);
 }
 

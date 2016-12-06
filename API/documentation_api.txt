@@ -19,7 +19,15 @@ params :
 	mail : email du client
 	mdp : mot de passe passe en sha1
 reponse :
-	result : nombre de lignes qui correspondent
+	result : 0 email invalide, 1 tout valide, 2 mdp invalide
+
+### Verifier couple login + mdp pro
+/check_credentials_pro
+params :
+	login : login du client
+	mdp : mot de passe passe en sha1
+reponse :
+	result : 0 email invalide, 1 tout valide, 2 mdp invalide
 
 ### Rechercher services dont le nom contient un texte
 /search_service
@@ -78,6 +86,27 @@ reponse :
 	mdp : mail du client en sha1
 	adresse : adresse du client
 reponse :
-	id : nombre de lignes qui correspondent
+	result : 0 déjà utilisé, 1 inscription validée
+	id : id de l'utilisateur ajoute
 
+### Récupération de toutes les professions
+/recup_professions
+params : 
+	aucun (sauf s'il t'en faut un)
+reponse :
+	professions : tableau des professions
+		idProfession
+		nomProfession
+	count
 
+### Récupération de toutes les professions
+/recup_services
+params : 
+	aucun (sauf s'il t'en faut un)
+reponse :
+	service : tableau des professions
+		idProfession
+		nomProfession
+		idPere : id du père
+		nomPere : nom du père
+	count
