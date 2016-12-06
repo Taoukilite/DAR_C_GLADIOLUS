@@ -80,4 +80,24 @@ reponse :
 reponse :
 	id : nombre de lignes qui correspondent
 
+### Récupération de toutes les professions
+/recup_professions
+params : 
+	aucun (sauf s'il t'en faut un)
+reponse :
+	professions : tableau des professions
+		idProfession
+		nomProfession
+	count
 
+### Récupération de toutes les professions
+/recup_services
+params : 
+	aucun (sauf s'il t'en faut un)
+reponse :
+	service : tableau des professions
+		idProfession
+		nomProfession
+		idPere : id du père
+		nomPere : nom du père
+	count
