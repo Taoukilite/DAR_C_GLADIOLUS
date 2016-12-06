@@ -22,7 +22,7 @@ SQL
 	$rep['result'] = 0;
 	if(($ligne = $stmt->fetch()) !== false && $ligne['nb'] == 1){
 	
-		$rep['result'] = 1;
+		$rep['result'] = 2;
 	
 		$pdo = myPDO::getInstance();
 		$stmt2 = $pdo->prepare(<<<SQL
@@ -36,7 +36,7 @@ SQL
 		$stmt2->bindValue(":mdp", $mdp);
 		$stmt2->execute();
 		if(($ligne2 = $stmt2->fetch()) !== false && $ligne2['nb'] == 1){
-			$rep['result'] = 2;
+			$rep['result'] = 1;
 		}		
 	}
 	echo json_encode($rep);
