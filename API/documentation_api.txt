@@ -110,3 +110,14 @@ reponse :
 		idPere : id du père
 		nomPere : nom du père
 	count
+
+### Récupération des informations d'un client
+/recup_infos_client
+	email : email du client
+reponse :
+	infos : 
+		nom
+		prenom
+		adresse
+		perimetre : périmètre de recherche en mètre
+	result : 0 si email pas trouvé, 1 si trouvé
