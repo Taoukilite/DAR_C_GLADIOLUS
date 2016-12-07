@@ -8,6 +8,8 @@ import { HomePage } from '../pages/home/home';
 import { ServicesPage } from '../pages/services/services';
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
+import { ProfessionsPage } from '../pages/professions/professions';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -20,10 +22,9 @@ export class MyApp {
   rootPage: any = LoginPage;
   //Tableau contenant les pages
   pages: Array<{title: string, component: any}>;
-  storage: Storage = null;
 
   constructor(public platform: Platform, public events: Events, public http: Http,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController, public storage:Storage) {
 
     //Requete http
     this.http = http;
@@ -50,18 +51,27 @@ export class MyApp {
       this.getLocation ();
       //Envoie à la bdd tout ça tout ça
 
-      var answer;
-      var professions;
-      var code;
       var link = 'http://tyrell.tk/recup_professions.php'
-
       this.http.get(link)
       .subscribe(data=>{
-        answer = data["_body"];
-        professions = JSON.parse(answer).professions;
-        console.log(professions[0]['idProfession']);
-        console.log(professions[1]);
-        code = parseInt(JSON.parse(answer).code);
+        let professions = JSON.parse(data["_body"]).professions;
+        //On remplit la BDD locale à la clef 'Professions'
+        this.storage.set('Professions', professions);
+      }, error=>{
+        let alert = this.alertCtrl.create({
+          title: "Erreur lors du chargement de la base",
+          buttons: ['OK']
+        });
+        alert.present();
+        console.log(error);
+      });
+      link = 'http://tyrell.tk/recup_services.php'
+      this.http.get(link)
+      .subscribe(data=>{
+        let services = JSON.parse(data["_body"]).services;
+        console.log(data);
+        //On remplit la BDD locale à la clef 'Professions'
+        this.storage.set('Services', services);
       }, error=>{
         let alert = this.alertCtrl.create({
           title: "Erreur lors du chargement de la base",
@@ -71,11 +81,8 @@ export class MyApp {
         console.log(error);
       });
 
-      //Initilisation de la BDD
-      
-
-
     });
+
   }
 
   getLocation(){
@@ -93,6 +100,7 @@ export class MyApp {
       this.pages = [
         { title: 'Accueil', component: HomePage },
         { title: 'Services', component: ServicesPage },
+        { title: 'Professions', component: ProfessionsPage },
         { title: 'Profil', component: ProfilePage },
       ];
     }
@@ -101,6 +109,7 @@ export class MyApp {
       this.pages = [
         { title: 'Accueil', component: HomePage },
         { title: 'Services', component: ServicesPage },
+        { title: 'Professions', component: ProfessionsPage },
         { title: 'Login', component: LoginPage },
       ];
     }

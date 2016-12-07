@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-=======
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, List, Searchbar } from 'ionic-angular';
 import { SQLite } from 'ionic-native';
 import { SearchResultPage } from '../search-result/search-result';
->>>>>>> 477eaea5b034818b82a7992c8ff40634184f9e3a
 
 /*
   Generated class for the Home page.
