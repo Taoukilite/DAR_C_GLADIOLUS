@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
@@ -11,6 +12,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { PartenariatPage } from '../pages/partenariat/partenariat';
 import { ChangeprofilePage } from '../pages/changeprofile/changeprofile';
 import { SearchResultPage } from '../pages/search-result/search-result';
+import { ProfessionsPage } from '../pages/professions/professions';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { SearchResultPage } from '../pages/search-result/search-result';
     ProfilePage,
     PartenariatPage,
     ChangeprofilePage,
-	SearchResultPage
+	  SearchResultPage,
+    ProfessionsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -40,8 +43,9 @@ import { SearchResultPage } from '../pages/search-result/search-result';
     ProfilePage,
     PartenariatPage,
     ChangeprofilePage,
-	SearchResultPage
+	  SearchResultPage,
+    ProfessionsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage]
 })
 export class AppModule {}
