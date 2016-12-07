@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { SQLite } from 'ionic-native';
+
 /*
   Generated class for the Services page.
 
