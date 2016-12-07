@@ -110,3 +110,25 @@ reponse :
 		idPere : id du père
 		nomPere : nom du père
 	count
+
+### Récupération des informations d'un client
+/recup_infos_client
+	email : email du client
+reponse :
+	infos : 
+		nom
+		prenom
+		adresse
+		perimetre : périmètre de recherche en mètre
+	result : 0 si email pas trouvé, 1 si trouvé
+
+### Récupération des boutiques autour d'un perimetre
+/recup_infos_client
+	latitude
+	longitude
+	perimetre
+reponse :
+	boutiques : 
+		nomBoutique
+		urlBoutique : attention les / sont codés par \/. merci de signaler si cela pose problème
+	count : nombre de boutiques dans le perimetre
