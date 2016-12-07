@@ -19,14 +19,11 @@ function haversineGreatCircleDistance(
   return $angle * $earthRadius;
 }
 
-
 if(isset($_GET['latitude']) && !empty($_GET['latitude'])
 	&& isset($_GET['longitude']) && !empty($_GET['longitude'])
-	&& isset($_GET['perimetre']) && !empty($_GET['perimetre'])
 ){
 	$latitude = $_GET['latitude'];
 	$longitude = $_GET['longitude'];
-	$perimetre = $_GET['perimetre'];
 	
 	$pdo = myPDO::getInstance();
 $stmt = $pdo->prepare(<<<SQL
@@ -38,7 +35,9 @@ SQL
 	
 	$rep = Array();
 	$rep['code'] = 200;
-	$i = 0;
+	
+	$boutique = Array();
+	$distanceMin = -1;
 	
 	while(($ligne = $stmt->fetch()) !== false){
 		$latitudeBoutique = $ligne['latitude'];
@@ -46,14 +45,14 @@ SQL
 		
 		$distance = haversineGreatCircleDistance($latitude, $longitude, $latitudeBoutique, $longitudeBoutique);
 		
-		if($distance <= $perimetre){		
-			$rep['boutiques'] = Array();
-			$rep['boutiques']['nomBoutique'] = $ligne['nomBoutique'];
-			$rep['boutiques']['urlBoutique'] = $ligne['urlBoutique'];		
-			$i++;	
+		if($distanceMin == -1 || $distance <= $distanceMin){
+			$boutique['nomBoutique'] = $ligne['nomBoutique'];
+			$boutique['urlBoutique'] = $ligne['urlBoutique'];
+			$distanceMin = $distance;
 		}
 	}
-	$rep['count'] = $i;
+	
+	$rep['boutique'] = $boutique;
 	
 	echo json_encode($rep);
 		

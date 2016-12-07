@@ -1,6 +1,6 @@
 <?php
 require_once 'configbd.php';
-
+myPDO::setConfiguration('mysql:host=localhost;dbname=TyrellBoutiques;charset=utf8','tyrell','tyrell') ;
 header("Access-Control-Allow-Origin: *");
 
 if(isset($_GET['nom']) && !empty($_GET['nom'])
