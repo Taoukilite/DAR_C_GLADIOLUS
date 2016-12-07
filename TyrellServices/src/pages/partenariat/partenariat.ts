@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController ,AlertController} from 'ionic-angular';
-import { SQLite } from 'ionic-native';
 import { Http } from '@angular/http';
 
 import { HomePage } from '../home/home';
@@ -17,7 +16,7 @@ import { LoginPage } from '../login/login'
 })
 export class PartenariatPage {
   nav:NavController;
-  
+
   mail:string;
   mdp:string;
   nom:string;

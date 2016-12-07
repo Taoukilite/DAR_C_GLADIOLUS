@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, List, Searchbar } from 'ionic-angular';
 import { SQLite } from 'ionic-native';
+import { SearchResultPage } from '../search-result/search-result';
 
 /*
   Generated class for the Home page.
@@ -14,9 +15,12 @@ import { SQLite } from 'ionic-native';
 })
 export class HomePage {
 
+  @ViewChild(Searchbar) sb: Searchbar;
   private showList: boolean;
   searchQuery: string = '';
   items: string[];
+  service:string;
+  selectedItem: any;
 
   constructor(public navCtrl: NavController) {
     this.initializeItems();
@@ -64,6 +68,13 @@ export class HomePage {
       'Uelzen',
       'Washington'
 ];
+  }
+
+  listClick(ev, query) {
+	this.navCtrl.push(SearchResultPage, {
+ 		 query: query
+ 	});
+
   }
 
   getItems(ev) {

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, Events} from 'ionic-angular';
-import { SQLite } from 'ionic-native';
 import { Http } from '@angular/http';
 
 import { HomePage } from '../home/home';
@@ -18,7 +17,7 @@ import { LoginPage } from '..//login/login';
 })
 export class RegisterPage {
   nav:NavController;
-  
+
   mail:string;
   mdp:string;
   nom:string;
@@ -54,7 +53,7 @@ export class RegisterPage {
       {
         //Requete http en get à l'url initialisé
         this.http.get(link)
-          .subscribe(data=>{ 
+          .subscribe(data=>{
             //On récupère la réponse dans data._body (sous la forme d'un JSON)
             answer = data["_body"];
 

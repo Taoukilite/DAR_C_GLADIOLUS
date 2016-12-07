@@ -1,6 +1,5 @@
 import { Component} from '@angular/core';
 import { NavController, AlertController, Events } from 'ionic-angular';
-import { SQLite } from 'ionic-native';
 import { Http } from '@angular/http';
 
 import { HomePage } from '../home/home';
@@ -19,11 +18,11 @@ import { ProPage } from '../pro/pro';
 })
 export class LoginPage {
 	nav:NavController;
-  
+
   mail:string;
   mdp:string;
 
-  	constructor(public navCtrl: NavController, public http: Http, 
+  	constructor(public navCtrl: NavController, public http: Http,
                 public alertCtrl: AlertController, public events: Events){
   		this.navCtrl = navCtrl;
       this.http = http;
@@ -38,7 +37,7 @@ export class LoginPage {
    	pro(){
    		this.navCtrl.push(ProPage, "forward");
    	}
-  
+
     submit()
     {
       //Initialisation de notre URL : URL + parametres : mail et mdp
@@ -51,7 +50,7 @@ export class LoginPage {
 
       //Requete http en get à l'url initialisé
       this.http.get(link)
-        .subscribe(data=>{ 
+        .subscribe(data=>{
           //On récupère la réponse dans data._body (sous la forme d'un JSON)
           answer = data["_body"];
 

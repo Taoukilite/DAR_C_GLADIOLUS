@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController  } from 'ionic-angular';
-import { SQLite } from 'ionic-native';
 import { Http } from '@angular/http';
 
 import { HomePage } from '../home/home';
@@ -23,9 +22,9 @@ export class ProPage {
 
 	nav:NavController;
   mail:string;
-  mdp:string;	
+  mdp:string;
 
-  	constructor(public navCtrl: NavController,public http: Http, 
+  	constructor(public navCtrl: NavController,public http: Http,
                 public alertCtrl: AlertController) {
   		this.navCtrl = navCtrl;
       this.http = http;
@@ -46,7 +45,7 @@ export class ProPage {
 
         //Requete http en get à l'url initialisé
         this.http.get(link)
-          .subscribe(data=>{ 
+          .subscribe(data=>{
             //On récupère la réponse dans data._body (sous la forme d'un JSON)
             answer = data["_body"];
 
@@ -74,7 +73,7 @@ export class ProPage {
             });
             alert.present();
             console.log(error);
-          }); 
+          });
   }
   partenariat(){
     this.navCtrl.push(PartenariatPage, "forward");
