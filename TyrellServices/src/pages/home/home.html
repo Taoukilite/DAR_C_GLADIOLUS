@@ -15,11 +15,11 @@
 
 <ion-content padding image-menu>
 	<h3>Que recherchez-vous ?</h3>
-  <ion-searchbar (ionInput)="getItems($event)" (ionCancel)="onCancel($event)" [showCancelButton]="true">
+  <ion-searchbar (ionInput)="getItems($event)" (ionCancel)="onCancel($event)" [showCancelButton]="true" class="searchBar">
   </ion-searchbar>
   <ion-list *ngIf="showList">
-    <ion-item *ngFor="let item of items">
+    <button ion-item *ngFor="let item of items" (click)="listClick($event, item)" >
       {{ item }}
-    </ion-item>
+  	</button>
   </ion-list>
 </ion-content>
