@@ -12,20 +12,34 @@ $stmt = $pdo->prepare(<<<SQL
 select count(idClient) "nb"
 from client
 where mail=:mail
-and mdp=:mdp
 SQL
 	);
 	$stmt->bindValue(":mail", $mail);
-	$stmt->bindValue(":mdp", $mdp);
 	$stmt->execute();
-	if(($ligne = $stmt->fetch()) !== false){
-		$rep = Array();
-		$rep['code'] = 200;
-		$rep['result'] = $ligne["nb"];
-		echo json_encode($rep);
-	}
-		
 	
+	$rep = Array();
+	$rep['code'] = 200;
+	$rep['result'] = 0;
+	if(($ligne = $stmt->fetch()) !== false && $ligne['nb'] == 1){
+	
+		$rep['result'] = 2;
+	
+		$pdo = myPDO::getInstance();
+		$stmt2 = $pdo->prepare(<<<SQL
+select count(idClient) "nb"
+from client
+where mail=:mail
+and mdp=:mdp
+SQL
+		);
+		$stmt2->bindValue(":mail", $mail);
+		$stmt2->bindValue(":mdp", $mdp);
+		$stmt2->execute();
+		if(($ligne2 = $stmt2->fetch()) !== false && $ligne2['nb'] == 1){
+			$rep['result'] = 1;
+		}		
+	}
+	echo json_encode($rep);
 		
 }else{
 	http_response_code(403);

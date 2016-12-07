@@ -1,6 +1,8 @@
 <?php
 require_once 'configbd.php';
-header('Access-Control-Allow-Origin: *');
+
+header("Access-Control-Allow-Origin: *");
+
 if(isset($_GET['nom']) && !empty($_GET['nom'])
 	&& isset($_GET['prenom']) && !empty($_GET['prenom'])
 	&& isset($_GET['mail']) && !empty($_GET['mail'])
@@ -15,26 +17,42 @@ if(isset($_GET['nom']) && !empty($_GET['nom'])
 	
 	$pdo = myPDO::getInstance();
 $stmt = $pdo->prepare(<<<SQL
+select count(idClient) "nb"
+from client
+where mail = :mail;
+SQL
+	);
+	
+	$stmt->bindValue(":mail", $mail);
+	$stmt->execute();
+	
+	$rep['code'] = 200;
+	
+	if(($ligne = $stmt->fetch()) !== false && $ligne['nb'] == 0){		
+		$stmt = $pdo->prepare(<<<SQL
 INSERT INTO `client` (`idClient`, `nom`, `prenom`, `adresse`, `mail`, `mdp`) 
 VALUES (NULL, :nom, :prenom, :adresse, :mail, :mdp);
 SQL
-	);
-	$stmt->bindValue(":nom", $nom);
-	$stmt->bindValue(":prenom", $prenom);
-	$stmt->bindValue(":mail", $mail);
-	$stmt->bindValue(":mdp", $mdp);
-	$stmt->bindValue(":adresse", $adresse);
-	$stmt->execute();
-	
-	$rep = Array();
-	$rep['code'] = 200;
-	if($stmt->rowCount() == 1 ){
-		$rep['id'] = $pdo->lastInsertId();
-	}else{
-		$rep['code'] = 500;
-		$rep['msg'] = "Erreur durant la creation de l'utiliateur";
-	}
+		);
+		$stmt->bindValue(":nom", $nom);
+		$stmt->bindValue(":prenom", $prenom);
+		$stmt->bindValue(":mail", $mail);
+		$stmt->bindValue(":mdp", $mdp);
+		$stmt->bindValue(":adresse", $adresse);
+		$stmt->execute();
 		
+		$rep = Array();
+		if($stmt->rowCount() == 1 ){
+			$rep['result'] = 1;
+			$rep['id'] = $pdo->lastInsertId();
+		}else{
+			$rep['code'] = 500;
+			$rep['msg'] = "Erreur durant la creation de l'utiliateur";
+		}
+			
+	}else{
+		$rep['result'] = 0;
+	}
 	
 	echo json_encode($rep);		
 	
