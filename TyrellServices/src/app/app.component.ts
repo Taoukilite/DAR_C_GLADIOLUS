@@ -30,8 +30,6 @@ export class MyApp {
     this.http = http;
     //Initialisation de l'app
     this.initializeApp();
-    //Initialise les pages en fonction de si l'utilisateur est loggué ou non
-    this.logged();
     //Création de l'event qui va permettre de mettre à jour la liste des pages
     //en fonction de si l'utilisateur est connecté ou pas
     events.subscribe('logged', () => {
@@ -45,58 +43,141 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
+
       //Initialisation de la variable pour la gestion de la connexion
       localStorage['logged']= 0;
+      //Initialise les pages en fonction de si l'utilisateur est loggué ou non
+      this.logged();
 
-      this.getLocation ();
-      //Envoie à la bdd tout ça tout ça
-
-      var link = 'http://tyrell.tk/recup_professions.php'
-      this.http.get(link)
-      .subscribe(data=>{
-        let professions = JSON.parse(data["_body"]).professions;
-        //On remplit la BDD locale à la clef 'Professions'
-        this.storage.set('Professions', professions);
-      }, error=>{
-        let alert = this.alertCtrl.create({
-          title: "Erreur lors du chargement de la base",
-          buttons: ['OK']
-        });
-        alert.present();
-        console.log(error);
-      });
-      link = 'http://tyrell.tk/recup_services.php'
-      this.http.get(link)
-      .subscribe(data=>{
-        let services = JSON.parse(data["_body"]).services;
-        console.log(data);
-        //On remplit la BDD locale à la clef 'Professions'
-        this.storage.set('Services', services);
-      }, error=>{
-        let alert = this.alertCtrl.create({
-          title: "Erreur lors du chargement de la base",
-          buttons: ['OK']
-        });
-        alert.present();
-        console.log(error);
-      });
+      //Mise à jours BDD, seulement si nécessaire
+      this.majDB();
 
     });
 
   }
 
-  getLocation(){
+  /*Fonction qui va permettre plusieurs choses :
+    - Vérifier la boutique à laquelle l'application est reliée en regardant la
+      position de l'utilisateur
+    - Vérifier la version de la bdd locale
+    - Et mettre à jours cette BDD si nécessaire
+  */
+  majDB(){
+    //Tout d'abord on récupère la position de l'utilisateur
     Geolocation.getCurrentPosition ({enableHighAccuracy: true, timeout: 5000, maximumAge: 0})
     .then(position=> {
-      console.log(position.coords.latitude);
-      console.log(position.coords.longitude);
+      //On récupère les positions de l'utilisateur
+      let lat = position.coords.latitude;
+      let long = position.coords.longitude;
+      //Ensuite on va envoyer un requète à la BDD globale pour obtenir l'adresse
+      //de la bdd de la boutique la plus proche
+      let link = 'http://tyrell.tk/boutique.php?latitude='+lat+'&longitude='+long;
+
+      //On envoie la requète au serveur
+      this.http.get(link)
+      .subscribe(data=>{
+        //On récupère les données de la boutique la plus proche
+        let boutique = JSON.parse(data["_body"]).boutique;
+        //On regarde quelle boutique est déjà présente la BDD
+        this.storage.get('Boutique').then((val) => {
+          //On compare avec la boutique actuelle
+          if (val['nomBoutique'] == null || val['nomBoutique'] != boutique['nomBoutique']){
+            //On change le nom de la boutique si nécessaire
+            this.storage.set('Boutique', boutique);
+            //Vu que ce n'était pas la même boutique on met directement à jours la bdd
+            //Récup des professions
+            link = 'http://'+boutique['urlBoutique']+'/recup_professions.php';
+            this.http.get(link)
+            .subscribe(data=>{
+              let professions = JSON.parse(data["_body"]).professions;
+              this.storage.set("Professions", professions);
+            }, error=>{
+              this.alert("Erreur lors du chargement des professions");
+              console.log(error);
+            });
+
+            //Récup des services
+            link = 'http://'+boutique['urlBoutique']+'/recup_services.php';
+            this.http.get(link)
+            .subscribe(data=>{
+              let services = JSON.parse(data["_body"]).services;
+              this.storage.set("Services", services);
+            }, error=>{
+              this.alert("Erreur lors du chargement des services");
+              console.log(error);
+            });
+          }
+          //Cas où c'était la même boutique dans la bdd
+          else
+          {
+            //On va intéroger le serveur sur la version de sa bdd
+            //On définit le lien pour la bdd de la boutique
+            link = 'http://'+boutique['urlBoutique']+'/version.php';
+            this.http.get(link)
+            .subscribe(data=>{
+              //On récupère la version de la boutique
+              let version = JSON.parse(data["_body"]).version;
+              //On regarde la version actuelle de la bdd
+              this.storage.get('Version').then((val) => {
+                //Si elle n'est pas à jours on la met à jours
+                if (val==null || val != version){
+                  console.log("MAJ BDD");
+                  //On maj la version
+                  this.storage.set("Version", version);
+                  //Récup des professions
+                  link = 'http://'+boutique['urlBoutique']+'/recup_professions.php';
+                  this.http.get(link)
+                  .subscribe(data=>{
+                    let professions = JSON.parse(data["_body"]).professions;
+                    this.storage.set("Professions", professions);
+                  }, error=>{
+                    this.alert("Erreur lors du chargement des professions");
+                    console.log(error);
+                  });
+
+                  //Récup des services
+                  link = 'http://'+boutique['urlBoutique']+'/recup_services.php';
+                  this.http.get(link)
+                  .subscribe(data=>{
+                    let services = JSON.parse(data["_body"]).services;
+                    this.storage.set("Services", services);
+                  }, error=>{
+                    this.alert("Erreur lors du chargement des services");
+                    console.log(error);
+                  });
+                }
+              }, error=>{
+                this.alert("Erreur lors de la récupération de la version de la base");
+                console.log(error);
+              });
+            }, error=>{
+              this.alert("Erreur lors du chargement de la version de la base");
+              console.log(error);
+            });
+          }
+        }, error=>{
+          this.alert("Erreur lors de la récupération de la boutique");
+          console.log(error);
+        });
+      }, error=>{
+        this.alert("Erreur lors du chargement de la boutique");
+        console.log(error);
+      });
     });
   }
 
+  alert(title){
+    let alert = this.alertCtrl.create({
+      title: title,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+  //Fonction qui va modifier la liste des pages en fonction de si l'utilisateur
+  //est connecté ou non, notamment pour remplacer les pages Profil et Login
   logged(){
     if(localStorage['logged'] == 1)
     {
-      console.log("logger")
       this.pages = [
         { title: 'Accueil', component: HomePage },
         { title: 'Services', component: ServicesPage },
@@ -105,7 +186,6 @@ export class MyApp {
       ];
     }
     else{
-      console.log("Pas logger")
       this.pages = [
         { title: 'Accueil', component: HomePage },
         { title: 'Services', component: ServicesPage },
@@ -115,9 +195,8 @@ export class MyApp {
     }
   }
 
+  //Permet de désigner une nouvelle page en tant que root et d'ouvrir cette page
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.menu.enable(true);
     this.nav.setRoot(page.component);
     this.menu.close();
