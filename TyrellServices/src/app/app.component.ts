@@ -68,7 +68,7 @@ export class MyApp {
     //ça veut dire qu'il va falloir initialisé tous les autres champs
     this.storage.get('Boutique').then((val)=>{
       if (val==undefined){
-        this.storage.set('Boutique', Object);
+        this.storage.set('Boutique', {nomBoutique:"", urlBoutique:""});
         this.storage.set('Boutiques', "");
         this.storage.set('Professions', "");
         this.storage.set('Services', "");
