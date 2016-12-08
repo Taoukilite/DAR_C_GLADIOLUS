@@ -9,6 +9,7 @@ import { ServicesPage } from '../pages/services/services';
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfessionsPage } from '../pages/professions/professions';
+import { BoutiquesPage } from '../pages/boutiques/boutiques';
 
 
 @Component({
@@ -111,6 +112,15 @@ export class MyApp {
             this.http.get(link)
             .subscribe(data=>{
               let services = JSON.parse(data["_body"]).services;
+              //Une fois qu'on a les services on va les réordonner pour
+              //faciliter leur affichage et la navigation
+              let idPere;
+              for (let i = 0; i<services.length; ++i){
+                idPere = services[i]['idPere'];
+                if (idPere != null){
+                  services[idPere]['SousService'] = services[i];
+                }
+              }
               this.storage.set("Services", services);
             }, error=>{
               this.alert("Erreur lors du chargement des services");
@@ -150,6 +160,15 @@ export class MyApp {
                   this.http.get(link)
                   .subscribe(data=>{
                     let services = JSON.parse(data["_body"]).services;
+                    //Une fois qu'on a les services on va les réordonner pour
+                    //faciliter leur affichage et la navigation
+                    let idPere;
+                    for (let i = 0; i<services.length; ++i){
+                      idPere = services[i]['idPere'];
+                      if (idPere != null){
+                        services[idPere]['SousService'] = services[i];
+                      }
+                    }
                     this.storage.set("Services", services);
                   }, error=>{
                     this.alert("Erreur lors du chargement des services");
@@ -192,6 +211,7 @@ export class MyApp {
         { title: 'Accueil', component: HomePage },
         { title: 'Services', component: ServicesPage },
         { title: 'Professions', component: ProfessionsPage },
+        { title: 'Boutiques', component: BoutiquesPage },
         { title: 'Profil', component: ProfilePage },
       ];
     }
@@ -200,6 +220,7 @@ export class MyApp {
         { title: 'Accueil', component: HomePage },
         { title: 'Services', component: ServicesPage },
         { title: 'Professions', component: ProfessionsPage },
+        { title: 'Boutiques', component: BoutiquesPage },
         { title: 'Login', component: LoginPage },
       ];
     }
