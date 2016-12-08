@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController ,AlertController} from 'ionic-angular';
 import { Http } from '@angular/http';
 
-import { LoginPage } from '../login/login'
 /*
   Generated class for the Partenariat page.
 

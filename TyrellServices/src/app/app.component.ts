@@ -64,6 +64,17 @@ export class MyApp {
     - Et mettre à jours cette BDD si nécessaire
   */
   majDB(){
+    //On regarde si Boutique est défini dans la bdd, si ce n'est pas le Cas
+    //ça veut dire qu'il va falloir initialisé tous les autres champs
+    this.storage.get('Boutique').then((val)=>{
+      if (val==undefined){
+        this.storage.set('Boutique', Object);
+        this.storage.set('Boutiques', "");
+        this.storage.set('Professions', "");
+        this.storage.set('Services', "");
+        this.storage.set('Version', "")
+      }
+    });
     //On commence par mettre à jours la liste des boutiques
     let link = 'http://tyrell.tk/allBoutique.php'
     this.http.get(link)
