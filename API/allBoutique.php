@@ -12,16 +12,15 @@ $stmt->execute();
 
 $rep = Array();
 $rep['code'] = 200;
-$i = 0;
 
 while(($ligne = $stmt->fetch()) !== false){	
-	$rep['boutiques'] = Array();
-	$rep['boutiques']['nomBoutique'] = $ligne['nomBoutique'];
-	$rep['boutiques']['urlBoutique'] = $ligne['urlBoutique'];		
-	$rep['boutiques']['latitude'] = $ligne['latitude'];
-	$rep['boutiques']['longitude'] = $ligne['longitude'];	
-	$i++;	
+	$array = Array();
+	$array['nomBoutique'] = $ligne['nomBoutique'];
+	$array['urlBoutique'] = $ligne['urlBoutique'];		
+	$array['latitude'] = $ligne['latitude'];
+	$array['longitude'] = $ligne['longitude'];
+
+	$rep['boutiques'][] = $array;
 }
-$rep['count'] = $i;
 
 echo json_encode($rep);

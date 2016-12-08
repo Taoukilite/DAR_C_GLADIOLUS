@@ -122,7 +122,7 @@ reponse :
 		perimetre : périmètre de recherche en mètre
 	result : 0 si email pas trouvé, 1 si trouvé
 
-### Récupération de la boutique la plus proche autour d'une localisation
+### Récupération de la boutique la plus proche
 /boutique
 	latitude
 	longitude
@@ -142,17 +142,16 @@ reponse :
 		urlBoutique : attention les / sont codés par \/. merci de signaler si cela pose problème
 	count : nombre de boutiques dans le perimetre
 
-### Récupération des boutiques autour d'un perimetre
+### Récupération de toutes les boutiques
 /allBoutique
 reponse :
-	count
 	boutiques : 
 		nomBoutique
 		urlBoutique
 		latitude
 		longitude
 
-### Récupération des boutiques autour d'un perimetre
+### Récupération de la version de la bdd de la boutique
 /<boutique>/version
 reponse :
 	version

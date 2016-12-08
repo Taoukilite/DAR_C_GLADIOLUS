@@ -63,6 +63,16 @@ export class MyApp {
     - Et mettre à jours cette BDD si nécessaire
   */
   majDB(){
+    //On commence par mettre à jours la liste des boutiques
+    let link = 'http://tyrell.tk/allBoutique.php'
+    this.http.get(link)
+    .subscribe(data=>{
+      console.log(data);
+      let boutiques = JSON.parse(data["_body"]).boutiques;
+      this.storage.set('Boutiques', boutiques);
+    }, error=>{
+      this.alert("Erreur lors du chargement des boutiques");
+    });
     //Tout d'abord on récupère la position de l'utilisateur
     Geolocation.getCurrentPosition ({enableHighAccuracy: true, timeout: 5000, maximumAge: 0})
     .then(position=> {
@@ -71,7 +81,7 @@ export class MyApp {
       let long = position.coords.longitude;
       //Ensuite on va envoyer un requète à la BDD globale pour obtenir l'adresse
       //de la bdd de la boutique la plus proche
-      let link = 'http://tyrell.tk/boutique.php?latitude='+lat+'&longitude='+long;
+      link = 'http://tyrell.tk/boutique.php?latitude='+lat+'&longitude='+long;
 
       //On envoie la requète au serveur
       this.http.get(link)
