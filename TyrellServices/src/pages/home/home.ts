@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, List, Searchbar } from 'ionic-angular';
-import { SQLite } from 'ionic-native';
+import { NavController, Searchbar } from 'ionic-angular';
+
 import { SearchResultPage } from '../search-result/search-result';
 
 /*

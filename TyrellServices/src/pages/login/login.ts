@@ -5,12 +5,6 @@ import { Http } from '@angular/http';
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 import { ProPage } from '../pro/pro';
-/*
-  Generated class for the Login page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 
 @Component({
   selector: 'page-login',

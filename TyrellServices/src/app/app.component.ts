@@ -68,7 +68,6 @@ export class MyApp {
     let link = 'http://tyrell.tk/allBoutique.php'
     this.http.get(link)
     .subscribe(data=>{
-      console.log(data);
       let boutiques = JSON.parse(data["_body"]).boutiques;
       this.storage.set('Boutiques', boutiques);
     }, error=>{
@@ -112,15 +111,6 @@ export class MyApp {
             this.http.get(link)
             .subscribe(data=>{
               let services = JSON.parse(data["_body"]).services;
-              //Une fois qu'on a les services on va les réordonner pour
-              //faciliter leur affichage et la navigation
-              let idPere;
-              for (let i = 0; i<services.length; ++i){
-                idPere = services[i]['idPere'];
-                if (idPere != null){
-                  services[idPere]['SousService'] = services[i];
-                }
-              }
               this.storage.set("Services", services);
             }, error=>{
               this.alert("Erreur lors du chargement des services");
@@ -160,15 +150,6 @@ export class MyApp {
                   this.http.get(link)
                   .subscribe(data=>{
                     let services = JSON.parse(data["_body"]).services;
-                    //Une fois qu'on a les services on va les réordonner pour
-                    //faciliter leur affichage et la navigation
-                    let idPere;
-                    for (let i = 0; i<services.length; ++i){
-                      idPere = services[i]['idPere'];
-                      if (idPere != null){
-                        services[idPere]['SousService'] = services[i];
-                      }
-                    }
                     this.storage.set("Services", services);
                   }, error=>{
                     this.alert("Erreur lors du chargement des services");
