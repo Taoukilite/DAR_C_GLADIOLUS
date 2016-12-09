@@ -34,7 +34,7 @@ export class ProfilePage {
     this.e_mail="toto@mail";
 
    //Initialisation de notre URL : URL + parametres : mail et mdp
-   // var link = 'http://tyrell.tk/refresh_profil.php?mail='+this.e_mail
+   // var link = 'http://tyrell.tk/reims/refresh_profil.php?mail='+this.e_mail
     //Déclarations des variables
     //var answer;
     //var result;
@@ -42,7 +42,7 @@ export class ProfilePage {
 
     //Requete http en get à l'url initialisé
     //this.http.get(link)
-      //.subscribe(data=>{ 
+      //.subscribe(data=>{
      //   //On récupère la réponse dans data._body (sous la forme d'un JSON)
       //  answer = data["_body"];
 

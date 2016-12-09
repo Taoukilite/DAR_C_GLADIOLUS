@@ -1,6 +1,6 @@
 <?php
 require_once 'configbd.php';
-myPDO::setConfiguration('mysql:host=localhost;dbname=TyrellBoutiques;charset=utf8','tyrell','tyrell') ;
+
 
 function haversineGreatCircleDistance(
   $latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000)
@@ -24,38 +24,38 @@ if(isset($_GET['latitude']) && !empty($_GET['latitude'])
 ){
 	$latitude = $_GET['latitude'];
 	$longitude = $_GET['longitude'];
-	
+
 	$pdo = myPDO::getInstance();
 $stmt = $pdo->prepare(<<<SQL
-select * 
+select *
 from Boutique
 SQL
 	);
 	$stmt->execute();
-	
+
 	$rep = Array();
 	$rep['code'] = 200;
-	
+
 	$boutique = Array();
 	$distanceMin = -1;
-	
+
 	while(($ligne = $stmt->fetch()) !== false){
 		$latitudeBoutique = $ligne['latitude'];
 		$longitudeBoutique = $ligne['longitude'];
-		
+
 		$distance = haversineGreatCircleDistance($latitude, $longitude, $latitudeBoutique, $longitudeBoutique);
-		
+
 		if($distanceMin == -1 || $distance <= $distanceMin){
 			$boutique['nomBoutique'] = $ligne['nomBoutique'];
 			$boutique['urlBoutique'] = $ligne['urlBoutique'];
 			$distanceMin = $distance;
 		}
 	}
-	
+
 	$rep['boutique'] = $boutique;
-	
+
 	echo json_encode($rep);
-		
+
 }else{
 	http_response_code(403);
 	$rep = Array();
