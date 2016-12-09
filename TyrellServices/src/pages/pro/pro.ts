@@ -36,7 +36,7 @@ export class ProPage {
  	}
   submit_pro(){
     //Initialisation de notre URL : URL + parametres : mail et mdp
-        var link = 'http://tyrell.tk/check_credentials.php?mail='
+        var link = 'http://tyrell.tk/check_credentials_pro.php?mail='
                     +this.mail+'&mdp='+this.mdp
         //Déclarations des variables
         var answer;
