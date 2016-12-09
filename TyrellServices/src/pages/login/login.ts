@@ -62,7 +62,6 @@ export class LoginPage {
           }
           if (result==1){
             localStorage['logged'] = 1;
-            localStorage['mail'] = this.mail;
             this.events.publish('logged');
             this.navCtrl.setRoot(HomePage);
           }

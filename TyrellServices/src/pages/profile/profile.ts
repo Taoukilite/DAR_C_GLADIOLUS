@@ -26,27 +26,38 @@ export class ProfilePage {
   e_mail:string;
   nom:string;
   constructor(public navCtrl: NavController, public http: Http,public events: Events,public params: NavParams){
+
+
+    this.nom="Neige ";
+    this.prenom="Jean ";
+    this.adresse="Le mur";
+    this.e_mail="toto@mail";
+
    //Initialisation de notre URL : URL + parametres : mail et mdp
-   var link = 'http://tyrell.tk/recup_infos_client.php?mail='+localStorage['mail']
+   // var link = 'http://tyrell.tk/refresh_profil.php?mail='+this.e_mail
     //Déclarations des variables
-    var answer;
-    var result;
-    var code;
+    //var answer;
+    //var result;
+    //var code;
 
     //Requete http en get à l'url initialisé
-    this.http.get(link).subscribe(data=>{
-        answer = data["_body"];
-        console.log(data["_body"]);
+    //this.http.get(link)
+      //.subscribe(data=>{ 
+     //   //On récupère la réponse dans data._body (sous la forme d'un JSON)
+      //  answer = data["_body"];
 
-        result = parseInt(JSON.parse(answer).result);
-        code = parseInt(JSON.parse(answer).code);
-        var infos=JSON.parse(answer).infos;
-        this.e_mail=localStorage['mail'];
-        this.adresse=infos[0]['adresse'] ;
-        this.prenom=infos[0]['prenom'];
-        this.nom= infos[0]['nom'];
-        this.range= infos[0]['perimetre'];
-      });
+        //On transforme le JSON en objet et on récupère les différents paramètres
+       // result = parseInt(JSON.parse(answer).result);
+        //console.log(result);
+        //code = parseInt(JSON.parse(answer).code);
+        //console.log(code);
+        //this.nom = (JSON.parse(answer).nom);
+        //console.log(code);
+        //this.prenom = (JSON.parse(answer).prenom);
+        //console.log(code);
+        //this.adresse = (JSON.parse(answer).adresse);
+        //console.log(code);
+    //  });
   }
 
 

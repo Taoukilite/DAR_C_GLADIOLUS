@@ -1,5 +1,5 @@
 <!--
-  Generated template for the Services page.
+  Generated template for the Professionnels page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
@@ -9,7 +9,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Services</ion-title>
+    <ion-title>{{this.selectedItem['item'].title}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -17,7 +17,11 @@
 <ion-content padding>
 	<ion-list>
 	    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-	      {{item.title}}
+	      {{item.nomProfessionnel}}
+        <div class='item-note' item-right>
+          {{item.distance}} km
+        </div>
 	    </button>
 	</ion-list>
+
 </ion-content>
