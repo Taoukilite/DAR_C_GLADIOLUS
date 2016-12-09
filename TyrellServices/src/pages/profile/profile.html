@@ -41,14 +41,11 @@
 
 
 		<ion-item>
-			<ion-label>Ajuster Perimetre d'action</ion-label>
-			<ion-range min="-100" step="10" snaps="true" [(ngModel)]="range">
-				<ion-label range-left class="small-text">5km</ion-label>
-				<ion-label range-right>50km</ion-label>
-			</ion-range>
+			<ion-label>Perimetre d'action</ion-label>
+				<ion-label name="email"  item-right> {{range}} </ion-label>
 		</ion-item>
-   
-      
+
+
 	</ion-list>
 <button ion-button color="light" block (click)="change()">Modifier profil</button>
 <button ion-button color="danger" block (click)="disconnect()">Deconnexion</button>
