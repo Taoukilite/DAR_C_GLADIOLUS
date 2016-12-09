@@ -24,7 +24,7 @@ export class ChangeprofilePage {
     console.log('Hello ChangeprofilePage Page');
   }
   changeName()
-  {	
+  {
   	console.log('ChangeprofilePage fonction Change Name');
 
      let prompt = this.alertCtrl.create({
