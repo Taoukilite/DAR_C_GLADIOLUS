@@ -207,13 +207,21 @@ export class MyApp {
         { title: 'Profil', component: ProfilePage },
       ];
     }
-    else{
+    else if (localStorage['logged'] == 0) {
       this.pages = [
         { title: 'Accueil', component: HomePage },
         { title: 'Services', component: ServicesPage },
         { title: 'Professions', component: ProfessionsPage },
         { title: 'Boutiques', component: BoutiquesPage },
         { title: 'Login', component: LoginPage },
+      ];
+    }
+    else if (localStorage['logged'] == 2) {
+      this.pages = [
+        { title: 'Accueil', component: HomePage },
+        { title: 'Services', component: ServicesPage },
+        { title: 'Professions', component: ProfessionsPage },
+        { title: 'Boutiques', component: BoutiquesPage },
       ];
     }
   }

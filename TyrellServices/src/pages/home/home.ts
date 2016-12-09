@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Searchbar } from 'ionic-angular';
+import { NavController, Searchbar, AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
-import { SearchResultPage } from '../search-result/search-result';
+import { ProfessionnelsPage } from '../professionnels/professionnels';
 
 /*
   Generated class for the Home page.
@@ -18,63 +19,59 @@ export class HomePage {
   @ViewChild(Searchbar) sb: Searchbar;
   private showList: boolean;
   searchQuery: string = '';
-  items: string[];
+  item: Array<{title: string, fromPage: string}>;
+  items: Array<{title: string, fromPage: string}>;
   service:string;
   selectedItem: any;
 
-  constructor(public navCtrl: NavController) {
-    this.initializeItems();
+  constructor(public navCtrl: NavController, public storage:Storage,
+              public alertCtrl: AlertController) {
     this.showList = false;
 
+    //Initialisation des items
+    this.item=[];
+    //On récupère les professions
+    this.storage.get('Professions').then((val)=>{
+      for (let i=0; i<val.length; i++){
+        this.item.push({
+          title: val[i]['nomProfession'],
+          fromPage: 'ProfessionPage'
+        });
+      }
+    }, error=>{
+      this.alert("Erreur lors de la récupération des professions");
+      console.log(error);
+    });
+    //On récupère les services
+    this.storage.get('Services').then((val)=>{
+      for (let i=0; i<val.length; i++){
+        this.item.push({
+          title: val[i]['nomService'],
+          fromPage: 'ServicePage'
+        });
+      }
+    }, error=>{
+      this.alert("Erreur lors de la récupération des professions");
+      console.log(error);
+    });
+  }
+  alert(title){
+    let alert = this.alertCtrl.create({
+      title: title,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   initializeItems() {
-    this.items = [
-      'Jean-Michel Plombier',
-      'J adore les frites',
-      'tkt',
-      'Cairo',
-      'Dhaka',
-      'Edinburgh',
-      'Geneva',
-      'Genoa',
-      'Glasglow',
-      'Hanoi',
-      'Hong Kong',
-      'Islamabad',
-      'Istanbul',
-      'Jakarta',
-      'Kiel',
-      'Kyoto',
-      'Le Havre',
-      'Lebanon',
-      'Lhasa',
-      'Lima',
-      'London',
-      'Los Angeles',
-      'Madrid',
-      'Manila',
-      'New York',
-      'Olympia',
-      'Oslo',
-      'Panama City',
-      'Peking',
-      'Philadelphia',
-      'San Francisco',
-      'Seoul',
-      'Taipeh',
-      'Tel Aviv',
-      'Tokio',
-      'Uelzen',
-      'Washington'
-];
+    this.items = this.item;
   }
 
-  listClick(ev, query) {
-	this.navCtrl.push(SearchResultPage, {
- 		 query: query
- 	});
-
+  listClick(event, item) {
+  	this.navCtrl.push(ProfessionnelsPage, {
+   		 item: item,
+       fromPage: item.fromPage
+   	});
   }
 
   getItems(ev) {
@@ -91,7 +88,7 @@ export class HomePage {
     if (val && val.trim() != '') {
 	  this.showList = true;
       this.items = this.items.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }

@@ -11,7 +11,6 @@ import { ProPage } from '../pages/pro/pro';
 import { ProfilePage } from '../pages/profile/profile';
 import { PartenariatPage } from '../pages/partenariat/partenariat';
 import { ChangeprofilePage } from '../pages/changeprofile/changeprofile';
-import { SearchResultPage } from '../pages/search-result/search-result';
 import { ProfessionsPage } from '../pages/professions/professions';
 import { BoutiquesPage } from '../pages/boutiques/boutiques';
 import { ProfessionnelsPage } from '../pages/professionnels/professionnels';
@@ -28,7 +27,6 @@ import { ProfessionnelsPage } from '../pages/professionnels/professionnels';
     ProfilePage,
     PartenariatPage,
     ChangeprofilePage,
-	  SearchResultPage,
     ProfessionsPage,
     BoutiquesPage,
     ProfessionnelsPage
@@ -47,7 +45,6 @@ import { ProfessionnelsPage } from '../pages/professionnels/professionnels';
     ProfilePage,
     PartenariatPage,
     ChangeprofilePage,
-	  SearchResultPage,
     ProfessionsPage,
     BoutiquesPage,
     ProfessionnelsPage

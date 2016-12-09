@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController  } from 'ionic-angular';
+import { NavController, AlertController, Events  } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 import { HomePage } from '../home/home';
@@ -25,7 +25,7 @@ export class ProPage {
   mdp:string;
 
   	constructor(public navCtrl: NavController,public http: Http,
-                public alertCtrl: AlertController) {
+                public alertCtrl: AlertController, public events: Events) {
   		this.navCtrl = navCtrl;
       this.http = http;
   	}
@@ -51,9 +51,7 @@ export class ProPage {
 
             //On transforme le JSON en objet et on récupère les différents paramètres
             result = parseInt(JSON.parse(answer).result);
-            console.log(result);
             code = parseInt(JSON.parse(answer).code);
-            console.log(code);
 
             if (result==0){
               let alert = this.alertCtrl.create({
@@ -63,10 +61,11 @@ export class ProPage {
               alert.present();
             }
             if (result==1){
-              this.navCtrl.setRoot(HomePage);
-              localStorage['logged'] = 1;
+              localStorage['logged'] = 2;
               localStorage['pro'] = 1;
               localStorage['mail'] = this.mail;
+              this.events.publish('logged');
+              this.navCtrl.setRoot(HomePage);
             }
           }, error=>{
             let alert = this.alertCtrl.create({

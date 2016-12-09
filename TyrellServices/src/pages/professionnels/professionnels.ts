@@ -74,7 +74,6 @@ export class ProfessionnelsPage {
             .subscribe(data=>{
               let professionnels = JSON.parse(data["_body"]).professionnels;
               this.items = professionnels;
-              console.log(professionnels);
             }, error=>{
               this.alert("Erreur lors du chargement des professionnels");
               console.log(error);
@@ -84,13 +83,31 @@ export class ProfessionnelsPage {
             console.log(error);
           });
         }
-
-
-        /*   for (let i = 0; i < val.length; i++) {
-             this.items.push({
-                 title: val[i]['nomProfession']
-              });
-            }*/
+        else if (this.selectedItem['fromPage'] == 'ServicePage'){
+          phpFunction = '/professionnels_service.php?idService=';
+          this.storage.get('Services').then((val) => {
+            let i = 0;
+            //Ici on va chercher l'id de la profession
+            while(val[i]['nomService'] != this.selectedItem['item'].title && i<val.length){
+              i++;
+            }
+            id = val[i]['idService'];
+            //Distance max pas encore géré, on la met par défaut à 20km
+            link = 'http://'+boutique['urlBoutique']+phpFunction+id+'&latitude='+lat
+                      +'&longitude='+long+'&distanceMax='+20;
+            this.http.get(link)
+            .subscribe(data=>{
+              let professionnels = JSON.parse(data["_body"]).professionnels;
+              this.items = professionnels;
+            }, error=>{
+              this.alert("Erreur lors du chargement des professionnels");
+              console.log(error);
+            });
+          }, error=>{
+            this.alert("Erreur lors de la récupération des professions");
+            console.log(error);
+          });
+        }
       }, error =>{
         this.alert("Erreur lors du chargement de la boutique");
         console.log(error);
