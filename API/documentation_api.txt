@@ -156,3 +156,12 @@ reponse :
 /<boutique>/version
 reponse :
 	version
+
+### Modification des informations client
+/client_modif_profile
+	mail 
+	code : 0 = nom, 1 = prenom, 2 = adresse, 3 = mail, 4 = mdp en sha1
+reponse :
+	-1 : colonne inconnue
+	0 : modification échouée
+	1 : modification ok
