@@ -1,5 +1,5 @@
 <?php
-require_once 'configbd.php';
+require_once 'configBdd.php';
 
 header('Access-Control-Allow-Origin: *');
 

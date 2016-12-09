@@ -36,7 +36,7 @@ export class ProPage {
  	}
   submit_pro(){
     //Initialisation de notre URL : URL + parametres : mail et mdp
-        var link = 'http://tyrell.tk/check_credentials_pro.php?mail='
+        var link = 'http://tyrell.tk/check_credentials_pro.php?login='
                     +this.mail+'&mdp='+this.mdp
         //Déclarations des variables
         var answer;
@@ -65,6 +65,8 @@ export class ProPage {
             if (result==1){
               this.navCtrl.setRoot(HomePage);
               localStorage['logged'] = 1;
+              localStorage['pro'] = 1;
+              localStorage['mail'] = this.mail;
             }
           }, error=>{
             let alert = this.alertCtrl.create({
