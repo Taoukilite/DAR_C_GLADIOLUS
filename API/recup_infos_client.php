@@ -3,7 +3,7 @@ require_once 'configbd.php';
 
 if(isset($_GET['mail']) && !empty($_GET['mail'])){
 	$mail = $_GET['mail'];
-	
+
 	$pdo = myPDO::getInstance();
 $stmt = $pdo->prepare(<<<SQL
 select nom, prenom, mail, adresse, perimetre
@@ -13,21 +13,22 @@ SQL
 	);
 	$stmt->bindValue(":mail", $mail);
 	$stmt->execute();
-	
+
 	$rep = Array();
 	$rep['code'] = 200;
 	$rep['result'] = 0;
-	if(($ligne = $stmt->fetch()) !== false){	
+	if(($ligne = $stmt->fetch()) !== false){
 		$rep['result'] = 1;
-		$rep['infos'] = Array();
-		$rep['infos']['nom'] = $ligne['nom'];
-		$rep['infos']['prenom'] = $ligne['prenom'];
-		$rep['infos']['mail'] = $ligne['mail'];
-		$rep['infos']['adresse'] = $ligne['adresse'];
-		$rep['infos']['perimetre'] = intval($ligne['perimetre']);		
+		$array = Array();
+		$array['nom'] = $ligne['nom'];
+		$array['prenom']= $ligne['prenom'];
+		$array['mail'] = $ligne['mail'];
+		$array['adresse'] = $ligne['adresse'];
+		$array['perimetre']= intval($ligne['perimetre']);
 	}
+	$rep['infos'][]=$array;
 	echo json_encode($rep);
-		
+
 }else{
 	http_response_code(403);
 	$rep = Array();
