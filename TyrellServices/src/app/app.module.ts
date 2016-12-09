@@ -14,6 +14,7 @@ import { ChangeprofilePage } from '../pages/changeprofile/changeprofile';
 import { SearchResultPage } from '../pages/search-result/search-result';
 import { ProfessionsPage } from '../pages/professions/professions';
 import { BoutiquesPage } from '../pages/boutiques/boutiques';
+import { ProfessionnelsPage } from '../pages/professionnels/professionnels';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { BoutiquesPage } from '../pages/boutiques/boutiques';
     ChangeprofilePage,
 	  SearchResultPage,
     ProfessionsPage,
-    BoutiquesPage
+    BoutiquesPage,
+    ProfessionnelsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -47,7 +49,8 @@ import { BoutiquesPage } from '../pages/boutiques/boutiques';
     ChangeprofilePage,
 	  SearchResultPage,
     ProfessionsPage,
-    BoutiquesPage
+    BoutiquesPage,
+    ProfessionnelsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage]
 })

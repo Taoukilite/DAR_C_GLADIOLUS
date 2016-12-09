@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
+//import { ProfessionnelsPage } from '../professionnels/professionnels';
+
 /*
   Generated class for the Services page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
+  Page qui affiche les différents service disponible dans la boutique
 */
 @Component({
   selector: 'page-services',
@@ -27,9 +27,9 @@ export class ServicesPage {
       this.selectedItem = Object;
       this.selectedItem['title'] = null;
     }
-		// Let's populate this page with some filler content for funzies
+    /*
 		this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-		'american-football', 'boat', 'bluetooth', 'build'];
+		'american-football', 'boat', 'bluetooth', 'build'];*/
 
 		this.items = [];
     //On récupère d'abord la liste des services
@@ -40,7 +40,7 @@ export class ServicesPage {
         // - Le service n'a pas de père (nomPere=null)
         // - Le service est un sous-service, il n'est alors pas affiché dans la
         //  première page des services mais seulement quand on clique sur son
-        //  service père 
+        //  service père
         if (val[i]['nomPere'] == this.selectedItem['title'])
           this.items.push({
   			    title: val[i]['nomService']
@@ -50,7 +50,6 @@ export class ServicesPage {
 	}
 
 	itemTapped(event, item) {
-		// That's right, we're pushing to ourselves!
 		this.navCtrl.push(ServicesPage, {
 			item: item
 		});

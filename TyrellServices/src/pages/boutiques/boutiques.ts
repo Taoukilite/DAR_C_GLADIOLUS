@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
+/*
+  Generated class for the Professionnels page.
+  Page qui affiche l'ensemble des boutiques de l'entreprise TyrellServices
+*/
+
 @Component({
   selector: 'page-boutiques',
   templateUrl: 'boutiques.html'
@@ -13,10 +18,10 @@ export class BoutiquesPage {
   icon:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage:Storage) {
-    // If we navigated to this page, we will have an item available as a nav param
 		this.selectedItem = navParams.get('item');
     this.icon = 'home';
 		this.items = [];
+    
     storage.get('Boutiques').then((val) => {
        for (let i = 0; i < val.length; i++) {
          this.items.push({
@@ -30,10 +35,9 @@ export class BoutiquesPage {
 
 
   itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(BoutiquesPage, {
+    /*this.navCtrl.push(BoutiquesPage, {
       item: item
-    });
+    });*/
   }
 
 }

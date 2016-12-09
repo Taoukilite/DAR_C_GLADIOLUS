@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
+import { ProfessionnelsPage } from '../professionnels/professionnels';
+
 /*
   Generated class for the Professions page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
+  Page qui affiche les professions disponibles dans la boutique la plus proche
 */
 @Component({
   selector: 'page-professions',
@@ -18,7 +18,6 @@ export class ProfessionsPage {
   items: Array<{title: string}>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage:Storage) {
-    // If we navigated to this page, we will have an item available as a nav param
 		this.selectedItem = navParams.get('item');
 
 		this.items = [];
@@ -32,9 +31,9 @@ export class ProfessionsPage {
     }
 
   itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ProfessionsPage, {
-      item: item
+    this.navCtrl.push(ProfessionnelsPage, {
+      item: item,
+      fromPage: 'ProfessionPage'
     });
   }
 

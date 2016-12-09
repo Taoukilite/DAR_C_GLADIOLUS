@@ -56,20 +56,18 @@ export class RegisterPage {
           .subscribe(data=>{
             //On récupère la réponse dans data._body (sous la forme d'un JSON)
             answer = data["_body"];
-
             //On transforme le JSON en objet et on récupère les différents paramètres
-            result = parseInt(JSON.parse(answer).id);
-            console.log(result);
+            result = parseInt(JSON.parse(answer).result);
             code = parseInt(JSON.parse(answer).code);
 
-            /*if (result==0){
+            if (result==0){
               let alert = this.alertCtrl.create({
-              title: "Email deja prise,Reesayer",
+              title: "Email déjà utilisé",
               buttons: ['OK']
               });
               alert.present();
             }
-            if (result==1){*/
+            if (result==1){
               let alert = this.alertCtrl.create({
                 title: "Inscription validée !",
                 buttons: ['OK']
@@ -78,7 +76,7 @@ export class RegisterPage {
               localStorage['logged'] = 1;
               this.events.publish('logged');
               this.navCtrl.setRoot(HomePage);
-            //}
+              }
           }, error=>{
             let alert = this.alertCtrl.create({
               title: "Erreur lors de la creation du compte",
